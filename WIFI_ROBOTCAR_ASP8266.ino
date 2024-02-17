@@ -12,7 +12,7 @@
 String command;             //String to store app command state.
 int speedA = 255;  // 0 to 255
 int speedB = 255;
-int speedCar = 510; //255+255
+int speedCar = 255; //255+255
 void speed(int s){
   speedA= s;
   speedB= s;
@@ -51,7 +51,7 @@ void setup() {
 }
 
 void forword() {  
-  speed(255);           //forword
+  speed(speedCar);           //forword
   digitalWrite(IN_1, HIGH);  //Right Motor forword Pin
   digitalWrite(IN_2, LOW);   //Right Motor backword Pin
   digitalWrite(IN_3, LOW);   //Left Motor backword Pin
@@ -59,8 +59,8 @@ void forword() {
 }
 
 void rightforword() {  
-  speedB=400;           //forword
-  speedA=speedCar - speedB;
+  speedB=speedCar+(speedCar*(0.5));
+  speedA=510 - speedB;
   digitalWrite(IN_1, HIGH);  //Right Motor forword Pin
   digitalWrite(IN_2, LOW);   //Right Motor backword Pin
   digitalWrite(IN_3, LOW);   //Left Motor backword Pin
@@ -68,8 +68,8 @@ void rightforword() {
 }
 
 void leftforword() {  
-  speedA=400;           //forword
-  speedB=speedCar - speedA;
+  speedA=speedCar+(speedCar*(0.5));
+  speedB=510 - speedA;
   digitalWrite(IN_1, HIGH);  //Right Motor forword Pin
   digitalWrite(IN_2, LOW);   //Right Motor backword Pin
   digitalWrite(IN_3, LOW);   //Left Motor backword Pin
@@ -77,7 +77,7 @@ void leftforword() {
 }
 
 void backword() {            //backword
-  speed(255);
+  speed(speedCar); 
   digitalWrite(IN_1, LOW);   //Right Motor forword Pin
   digitalWrite(IN_2, HIGH);  //Right Motor backword Pin
   digitalWrite(IN_3, HIGH);  //Left Motor backword Pin
@@ -85,8 +85,8 @@ void backword() {            //backword
 }
 
 void leftbackword() {            //backword
-  speedB=400;           //forword
-  speedA=speedCar - speedB;
+  speedB=speedCar+(speedCar*(0.5));
+  speedA=510 - speedB;
   digitalWrite(IN_1, LOW);   //Right Motor forword Pin
   digitalWrite(IN_2, HIGH);  //Right Motor backword Pin
   digitalWrite(IN_3, HIGH);  //Left Motor backword Pin
@@ -94,8 +94,8 @@ void leftbackword() {            //backword
 }
 
 void rightbackword() {            //backword
-  speedA=400;           //forword
-  speedB=speedCar - speedA;
+  speedA=speedCar+(speedCar*(0.5));
+  speedB=510 - speedA;
   digitalWrite(IN_1, LOW);   //Right Motor forword Pin
   digitalWrite(IN_2, HIGH);  //Right Motor backword Pin
   digitalWrite(IN_3, HIGH);  //Left Motor backword Pin
@@ -103,7 +103,7 @@ void rightbackword() {            //backword
 }
 
 void turnRight() {           //turnRight
-  speed(255);
+  speed(speedCar); 
   digitalWrite(IN_1, LOW);   //Right Motor forword Pin
   digitalWrite(IN_2, HIGH);  //Right Motor backword Pin
   digitalWrite(IN_3, LOW);   //Left Motor backword Pin
@@ -111,7 +111,7 @@ void turnRight() {           //turnRight
 }
 
 void turnLeft() {            //turnLeft
-  speed(255);
+  speed(speedCar); 
   digitalWrite(IN_1, HIGH);  //Right Motor forword Pin
   digitalWrite(IN_2, LOW);   //Right Motor backword Pin
   digitalWrite(IN_3, HIGH);  //Left Motor backword Pin
@@ -140,16 +140,16 @@ void loop() {
       else if (command == "G") leftforword();
       else if (command == "J") leftbackword();
       else if (command == "H") rightbackword();
-      else if (command == "0") speed(12); //51
-      else if (command == "1") speed(39);
-      else if (command == "2") speed(66);
-      else if (command == "3") speed(93);
-      else if (command == "4") speed(120);
-      else if (command == "5") speed(147);
-      else if (command == "6") speed(175);
-      else if (command == "7") speed(201);
-      else if (command == "8") speed(228);
-      else if (command == "9") speed(255);
+      else if (command == "9") speedCar=111; //12
+      else if (command == "8") speedCar=127; //39
+      else if (command == "7") speedCar=143; //66
+      else if (command == "6") speedCar=159; //93
+      else if (command == "5") speedCar=175; //120
+      else if (command == "4") speedCar=191; //147
+      else if (command == "3") speedCar=207; //175
+      else if (command == "2") speedCar=223; //201
+      else if (command == "1") speedCar=239; //228
+      else if (command == "0") speedCar=255; //255
       else if (command == "S") Stop();
 }
 
